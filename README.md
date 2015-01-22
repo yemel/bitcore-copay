@@ -4,7 +4,7 @@ A library for sharing funds between a set of members.
 
 ```javascript
 var bitcore = require('bitcore');
-var Party = require('bitcore-party');
+var copay = require('bitcore-copay');
 
 var message = require('./messages').partyProposal;
 var party = new Party(walletMessage);
