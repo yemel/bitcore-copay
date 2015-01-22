@@ -1,5 +1,5 @@
 {
-  "name": "bitcore-party",
+  "name": "bitcore-copay",
   "version": "1.0.0",
   "description": "A library for bitcoin married wallets",
   "main": "index.js",
@@ -9,6 +9,9 @@
   "author": "Yemel Jardi <yemel@bitpay.com> (http://github.com/yemel)",
   "license": "MIT",
   "dependencies": {
-    "bitcore": "^0.9.0"
+    "bitcore": "^0.9.0",
+    "bitcore-build": "^0.5.1",
+    "chai": "^1.10.0",
+    "gulp": "^3.8.10"
   }
 }

@@ -21,6 +21,8 @@ messages.transaction = {
     {path: "m/0/1", sighash: Signature.SIGHASH_ALL}
   ],
   output_metadata: [null, null],
+  previous_transactions: ['raw_tx1', 'raw_tx2'],
+  competing_transaction: 'txp_id',
   payment_protocol: [],
   message: "this is a proposal",
   timestamp: 1419934167279
