@@ -48,7 +48,7 @@ describe('Ring', function() {
     });
   });
 
-  it('reports error when joining and the ring is full', function() {
+  it('reports error when joining a full ring', function() {
     var ring = new Ring(2, 2);
     (function() {
       ring.join(new bitcore.HDPrivateKey());
@@ -59,6 +59,20 @@ describe('Ring', function() {
     (function() {
       ring.join(new bitcore.HDPrivateKey());
     }).should.throw();
-  })
+  });
+
+  it('allow deriving addresses', function() {
+    var message = '{"size":3,"threshold":2,"xpublicKeys":["xpub661MyMwAqRbcG4jDrr5Sg9K5PJfWQHoJCRX8NXQeNznxu3JN3558UML3G83zByZC3vWnVPvJy7M5oTHGLQmQVLkTpfkCqMCn2Afbai2Wcrc","xpub661MyMwAqRbcGWYt7hxPZ6H3vWUiCSzvce12fqcxRkGJ6NdKhLxfiCRemvaVxcAYvjcTmAGa2WS46qMC68TG9S7JvxUDSvjSqbZFmuj7yT5","xpub661MyMwAqRbcGuTuYp8WnRGKVn7KnnqBGg6NPR8TVDN5Y6wR5o8XHqGCJAXUA7txRA8UKMfPshVkDSK2uegMXksZxSsAjxCxtVjfDrTXdWS"]}';
+    var ring = new Ring(message);
+    var address = ring.deriveAddress('m/0/1');
+    address.toString().should.equal('34k2t8vKQB73TxorBtwiSmY2AReVfQG2bL');
+  });
+
+  it('allow deriving addresses', function() {
+    var message = '{"size":3,"threshold":2,"xpublicKeys":["xpub661MyMwAqRbcG4jDrr5Sg9K5PJfWQHoJCRX8NXQeNznxu3JN3558UML3G83zByZC3vWnVPvJy7M5oTHGLQmQVLkTpfkCqMCn2Afbai2Wcrc","xpub661MyMwAqRbcGWYt7hxPZ6H3vWUiCSzvce12fqcxRkGJ6NdKhLxfiCRemvaVxcAYvjcTmAGa2WS46qMC68TG9S7JvxUDSvjSqbZFmuj7yT5","xpub661MyMwAqRbcGuTuYp8WnRGKVn7KnnqBGg6NPR8TVDN5Y6wR5o8XHqGCJAXUA7txRA8UKMfPshVkDSK2uegMXksZxSsAjxCxtVjfDrTXdWS"]}';
+    var ring = new Ring(message);
+    var address = ring.deriveAddress(['m/0/1', 'm/1/1', 'm/2/1']);
+    address.toString().should.equal('3PRHvHCnpKHLh6aPiURTzLc2LLmg5WNuFT');
+  });
 
 });
