@@ -7,7 +7,7 @@ var bitcore = require('bitcore');
 var copay = require('../');
 var Ring = copay.Ring;
 
-describe('Ring', function() {
+describe.only('Ring', function() {
 
   describe('constructor', function() {
     it('creates without key', function() {
@@ -73,6 +73,14 @@ describe('Ring', function() {
     var ring = new Ring(message);
     var address = ring.deriveAddress(['m/0/1', 'm/1/1', 'm/2/1']);
     address.toString().should.equal('3PRHvHCnpKHLh6aPiURTzLc2LLmg5WNuFT');
+  });
+
+  it('returns index for public key', function() {
+    var message = '{"size":3,"threshold":2,"xpublicKeys":["xpub661MyMwAqRbcG4jDrr5Sg9K5PJfWQHoJCRX8NXQeNznxu3JN3558UML3G83zByZC3vWnVPvJy7M5oTHGLQmQVLkTpfkCqMCn2Afbai2Wcrc","xpub661MyMwAqRbcGWYt7hxPZ6H3vWUiCSzvce12fqcxRkGJ6NdKhLxfiCRemvaVxcAYvjcTmAGa2WS46qMC68TG9S7JvxUDSvjSqbZFmuj7yT5","xpub661MyMwAqRbcGuTuYp8WnRGKVn7KnnqBGg6NPR8TVDN5Y6wR5o8XHqGCJAXUA7txRA8UKMfPshVkDSK2uegMXksZxSsAjxCxtVjfDrTXdWS"]}';
+    var ring = new Ring(message);
+
+    ring.indexOf('xpub661MyMwAqRbcGWYt7hxPZ6H3vWUiCSzvce12fqcxRkGJ6NdKhLxfiCRemvaVxcAYvjcTmAGa2WS46qMC68TG9S7JvxUDSvjSqbZFmuj7yT5').should.equal(1);
+    ring.indexOf('xpub661MyMwAqRbcGtCZjdRw5GobSynYSbT5qJ8i9NqZ56oZMbrLPniPgqfem933aA1jSaNJJuMmCcRVPPfK8hbdmEeK73vWZU6XDsY3aBKFMgc').should.equal(-1);
   });
 
 });

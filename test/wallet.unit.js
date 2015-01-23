@@ -1,3 +1,4 @@
+return; /// ************** WORK IN PROGRESS ********** ///
 
 var copay = require('../');
 var bitcore = require('bitcore');
@@ -71,7 +72,7 @@ describe('wallet', function() {
         .to(address2, amount);
 
       var txProposal = new copay.Message.TransactionProposal({
-        ringId: ring.id,
+        ring_id: ring.id,
         timestamp: new Date().getTime(),
         message: 'Test',
         owner: privkey.xpubkey,

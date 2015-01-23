@@ -2,6 +2,8 @@
 
 var fs = require('fs');
 var bitcore = require('bitcore');
+bitcore.Networks.defaultNetwork = bitcore.Networks.testnet;
+
 var copay = require('../');
 
 var message = fs.readFileSync('wallet.msg').toString();
@@ -10,5 +12,3 @@ var address = ring.deriveAddress('m/0/1');
 
 fs.writeFileSync('address.msg', address.toString());
 console.log('fund:', address);
-
-

@@ -2,6 +2,8 @@
 
 var fs = require('fs');
 var bitcore = require('bitcore');
+bitcore.Networks.defaultNetwork = bitcore.Networks.testnet;
+
 var copay = require('../');
 
 var xpriv2 = new bitcore.HDPrivateKey();

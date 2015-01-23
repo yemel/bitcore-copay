@@ -1,6 +1,8 @@
 'use strict';
 
 var bitcore = require('bitcore');
+bitcore.Networks.defaultNetwork = bitcore.Networks.testnet;
+
 var explorers = require('bitcore-explorers');
 
 var blockchain = new explorers.Insight('testnet');
@@ -13,4 +15,6 @@ blockchain.getUnspentUtxos(address, function (err, utxo) {
 
   var utxo = utxo[0];
   var transaction = new bitcore.Transaction().from(utxo).to('mkYY5NRvikVBY1EPtaq9fAFgquesdjqECw', 100000);
+
+
 });
