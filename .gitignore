@@ -1,9 +1,11 @@
 *.sw[a-z]
 coverage
 node_modules
-bitcore-party.js
-bitcore-party.min.js
+bitcore-copay.js
+bitcore-copay.min.js
 tests.js
+*.key
+*.msg
 
 npm-debug.log
 

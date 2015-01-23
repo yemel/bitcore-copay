@@ -38,7 +38,27 @@ describe('Ring', function() {
       ring.xpublicKeys[0].toString().should.equal(xpriv.hdPublicKey.toString());
     });
 
-    // creates from invite
+    it('creates from a serialized ring', function() {
+      var message = '{"size":3,"threshold":2,"xpublicKeys":["xpub661MyMwAqRbcGQJSbD2gXPT1S8er6wAD6fERQrrEWJCTtnLqJ4agXo929sHxGc8mLd9VEDHC8Rd8pQbKxMsV5hTFhqyr791sNugsVpAJzgk"]}';
+      var ring = new Ring(message);
+      ring.size.should.equal(3);
+      ring.threshold.should.equal(2);
+      ring.xpublicKeys.length.should.equal(1);
+      ring.xpublicKeys[0].toString().should.equal('xpub661MyMwAqRbcGQJSbD2gXPT1S8er6wAD6fERQrrEWJCTtnLqJ4agXo929sHxGc8mLd9VEDHC8Rd8pQbKxMsV5hTFhqyr791sNugsVpAJzgk');
+    });
   });
+
+  it('reports error when joining and the ring is full', function() {
+    var ring = new Ring(2, 2);
+    (function() {
+      ring.join(new bitcore.HDPrivateKey());
+    }).should.not.throw();
+    (function() {
+      ring.join(new bitcore.HDPrivateKey());
+    }).should.not.throw();
+    (function() {
+      ring.join(new bitcore.HDPrivateKey());
+    }).should.throw();
+  })
 
 });
